@@ -350,4 +350,29 @@ ifconfig eth0
 * Forger melakukan ping google.com sebanyak lima kali yang menandakan setting DHCP sudah berhasil
 
 ### File GNS3
-File konfigurasi dan routing GNS3 ada pada: [Click Here](https://github.com/MonicaDavita/Jarkom-Modul-5-D09-2022/blob/main/Modul-5-D09.gns3project)
+* File konfigurasi dan routing GNS3 ada pada: [Click Here](https://github.com/MonicaDavita/Jarkom-Modul-5-D09-2022/blob/main/Modul-5-D09.gns3project)
+* Pastikan untuk mengikuti langkah-langkahnya melalui link berikut: [Click Me](https://github.com/MonicaDavita/Jarkom-Modul-5-D09-2022/blob/main/Panduan%20Menjalankan%20GNS3.txt)
+
+## Nomor 1
+### Soal
+Agar topologi yang kalian buat dapat mengakses keluar, kalian diminta untuk mengkonfigurasi Strix menggunakan iptables, tetapi Loid tidak ingin menggunakan MASQUERADE
+### Jawaban
+Ada pada script no1.sh di node Strix, jalankan script.
+Source 192.168.122.2 merupakan IP alternatif
+```
+iptables -t nat -A POSTROUTING -s 192.189.0.0/21 -o eth0 -j SNAT --to-source 192.168.122.2
+```
+
+## Nomor 2
+### Soal
+Kalian diminta untuk melakukan drop semua TCP dan UDP dari luar Topologi kalian pada server yang merupakan DHCP Server demi menjaga keamanan.
+### Jawaban
+Ada pada script no2.sh di node Strix, jalankan script.
+IP 192.189.7.131 merupakan alamat IP dari Wise (DHCP Server)
+```
+iptables -A FORWARD -p tcp -d 192.189.7.131 -i eth0 -j DROP # Drop semua TCP
+iptables -A FORWARD -p udp -d 192.189.7.131 -i eth0 -j DROP # Drop semua UDP
+```
+### Bukti Berhasil
+Jika berhasil, maka instalasi pada node Wise tidak dapat berjalan karena transaksi TCP dan UDP diblokir (dihapus)
+![BuktiBerhasilSoal2]()
