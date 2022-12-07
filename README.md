@@ -349,4 +349,4 @@ ifconfig eth0
 * Forger melakukan ping google.com sebanyak lima kali yang menandakan setting DHCP sudah berhasil
 
 ### File GNS3
-File konfigurasi dan routing GNS3 ada pada: [Click Here]()
+File konfigurasi dan routing GNS3 ada pada: [Click Here](https://github.com/MonicaDavita/Jarkom-Modul-5-D09-2022/blob/main/Modul-5-D09.gns3project)
