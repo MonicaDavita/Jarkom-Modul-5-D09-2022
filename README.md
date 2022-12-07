@@ -10,7 +10,7 @@
 ## Prefix IP
 192.189.X.X
 
-## VLSM GNS3
+## KONFIGURAS VLSM GNS3 (SOAL A-D)
 ### Topologi GNS3
 ![topologiVLSM](https://github.com/MonicaDavita/Jarkom-Modul-5-D09-2022/blob/main/aset/konfigurasi/clusteringVLSM.png?raw=true)
 
@@ -27,7 +27,7 @@ Setelah didapatkan IP pada setiap subnet paling bawah, maka dicari netmask dan b
 ### VLSM Routing - Setting Network Configuration
 ![NetworkConfigurationVLSM](https://github.com/MonicaDavita/Jarkom-Modul-5-D09-2022/blob/main/aset/konfigurasi/routerConf.jpeg?raw=true)
 
-**Konfigurasi: The Strix**
+**Strix**
 ```
 auto eth0
 iface eth0 inet dhcp
@@ -214,6 +214,7 @@ service bind9 restart
 
 ### Konfigurasi DHCP Server pada Node Wise
 Terletak pada script DHCPServer.sh pada node Wise. Script ini sudah berada di .bashrc sehingga tidak perlu dibash lagi
+
 **Konfigurasi pada isc-dhcp-server**
 ```
 echo -e '
@@ -323,7 +324,7 @@ INTERFACES="eth0 eth1 eth2 eth3"
 OPTIONS=""
 ' > /etc/default/isc-dhcp-relay
 ```
-Setelah bash, maka DHCP Relay perlu direstart, lakukan command berikut pada node Ostania
+Setelah bash, maka DHCP Relay perlu direstart, lakukan command berikut pada node Westalis
 ```
 service isc-dhcp-relay restart
 ```
