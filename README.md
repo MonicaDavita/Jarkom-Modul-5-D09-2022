@@ -375,4 +375,4 @@ iptables -A FORWARD -p udp -d 192.189.7.131 -i eth0 -j DROP # Drop semua UDP
 ```
 ### Bukti Berhasil
 Jika berhasil, maka instalasi pada node Wise tidak dapat berjalan karena transaksi TCP dan UDP diblokir (dihapus)
-![BuktiBerhasilSoal2]()
+![BuktiBerhasilSoal2](https://github.com/MonicaDavita/Jarkom-Modul-5-D09-2022/blob/main/aset/Soal%202/no2WiseStuck.jpeg?raw=true)
