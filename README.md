@@ -12,20 +12,20 @@
 
 ## VLSM GNS3
 ### Topologi GNS3
-![topologiVLSM]()
+![topologiVLSM](https://github.com/MonicaDavita/Jarkom-Modul-5-D09-2022/blob/main/aset/konfigurasi/clusteringVLSM.png?raw=true)
 
 Dari pengelompokan subnet tersebut didapatkan subnet terbesar memiliki /21 bit, sehingga pohon pembagian IP dapat dibuat menjadi sebagai berikut:
 
 ### Pohon IP VLSM
-![pohonIPVLSM]()
+![pohonIPVLSM](https://github.com/MonicaDavita/Jarkom-Modul-5-D09-2022/blob/main/aset/konfigurasi/pohonIPVLSM.png?raw=true)
 
 Setelah didapatkan IP pada setiap subnet paling bawah, maka dicari netmask dan broadcast pada setiap subnet tersebut. Hasilnya sebagai berikut:
 
 ### Tabel Netmask dan Broadcast ID
-![NetmaskBroadcastVLSM]()
+![NetmaskBroadcastVLSM](https://github.com/MonicaDavita/Jarkom-Modul-5-D09-2022/blob/main/aset/konfigurasi/netBroadcastID.jpeg?raw=true)
 
 ### VLSM Routing - Setting Network Configuration
-![NetworkConfigurationVLSM]()
+![NetworkConfigurationVLSM](https://github.com/MonicaDavita/Jarkom-Modul-5-D09-2022/blob/main/aset/konfigurasi/routerConf.jpeg?raw=true)
 
 **Konfigurasi: The Strix**
 ```
@@ -128,7 +128,7 @@ iface eth0 inet static
 ```
 
 ### VLSM Routing - Setting Host Configuration
-![ClientServerVLSM]()
+![ClientServerVLSM](https://github.com/MonicaDavita/Jarkom-Modul-5-D09-2022/blob/main/aset/konfigurasi/clientServer.jpeg?raw=true)
 
 Karena permintaan soal adalah client mendapatkan alamat IP dinamis dari DHCP Server,
 maka konfigurasi pada tiap client (Forger, Desmond, Briar, Blackbell) adalah sama
@@ -337,16 +337,16 @@ Untuk melihat IP client bisa menggunakan:
 ifconfig eth0
 ```
 ### Bukti Client Berhasil Mengakses Web Garden
-![BuktiWebServerSuccess]()
-* Guideau to Phanora
+![BuktiWebServerSuccess](https://github.com/MonicaDavita/Jarkom-Modul-5-D09-2022/blob/main/aset/konfigurasi/BlackbellAksesGarden.jpeg?raw=true)
+* Blackbell berhasil membuka laman pada Web Server Garden (IP Garden: 192.189.7.138)
 
 ### Bukti Berhasil Ping Antar Node
-![BuktiPingSuccess]()
-* dari Forger menuju Blackbell. Diketahui bahwa IP Forger saat itu adalah 192.189.7.4 dan IP Blackbell adalah 192.189.4.3
+![BuktiPingSuccess](https://github.com/MonicaDavita/Jarkom-Modul-5-D09-2022/blob/main/aset/konfigurasi/ForgerPingBlackbell.png?raw=true)
+* Ping dari Forger menuju Blackbell. Diketahui bahwa IP Forger saat itu adalah 192.189.7.4 dan IP Blackbell adalah 192.189.4.3
 
 ### Bukti Berhasil Ping Google Melalui IP Dinamis
-![BuktiPingGoogleSuccess]()
-* Forger melakukan ping google.com sebanyak lima kali
+![BuktiPingGoogleSuccess](https://github.com/MonicaDavita/Jarkom-Modul-5-D09-2022/blob/main/aset/konfigurasi/ForgerPingGoogle.jpeg?raw=true)
+* Forger melakukan ping google.com sebanyak lima kali yang menandakan setting DHCP sudah berhasil
 
 ### File GNS3
 File konfigurasi dan routing GNS3 ada pada: [Click Here]()
