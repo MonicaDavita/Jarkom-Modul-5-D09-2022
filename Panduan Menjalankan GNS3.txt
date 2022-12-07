@@ -1,0 +1,17 @@
+1. Routing: Buka semua router terlebih dahulu (Strix, Westalis, Ostania)
+1.1 Kalau ada permintaan terkait dhcp relay diskip (di-enter) saja
+1.2 Bash no1.sh --> khusus di Strix
+
+2. Web Server, DNS, dan DHCP Server: Buka semua server (Eden, WISE, Garden, SSS)
+2.1 bash tambahan.sh di server Eden
+
+3. DHCP Relay: Buka router Westalis, Ostania, Strix, dan Wise
+3.1 bash DHCPRelayWestalis.sh di node Westalis
+3.1.2 service isc-dhcp-relay restart
+3.2 bash DHCPRelayOstania.sh di node Ostania
+3.2.1 service isc-dhcp-relay restart
+3.3 bash DHCPRelayStrix.sh di node Strix
+3.3.1 service isc-dhcp-relay restart
+3.4 service isc-dhcp-server pada Wise
+
+4. Restart semua client lalu buka semua client, setelah instalasi selesai maka tes dengan ping google.com -c 5
