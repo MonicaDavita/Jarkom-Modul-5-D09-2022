@@ -410,3 +410,50 @@ Briar menuju Wise
 
 Desmond menuju Wise
 ![Desmond 131](https://user-images.githubusercontent.com/96837287/206892044-6511eb39-7354-4270-8d5d-35f79e7a191e.jpg)
+
+
+## Nomor 5
+### Soal
+Karena kita memiliki 2 Web Server, Loid ingin Ostania diatur sehingga setiap request dari client yang mengakses Garden dengan port 80 akan didistribusikan secara bergantian pada SSS dan Garden secara berurutan dan request dari client yang mengakses SSS dengan port 443 akan didistribusikan secara bergantian pada Garden dan SSS secara berurutan.
+### Jawaban
+Konfigurasi untuk masing-masing node dengan port untuk request masing-masing node adalah 80 dan 443 dengan menggunakan `--dport` karena saat terjadi request akan terdistribusi antara SSS & Garden. Selain itu, akan dibatasi secara bergantian dengan menggunakan `--every 2` sehingga akan bergantian terdistribusinya dengan mengarahkan ke node lain dengan menggunakan `--to-destination`.
+
+Ostania
+```
+iptables -A PREROUTING -t nat -p tcp --dport 80 -d 192.189.7.138 -m statistic --mode nth --every 2 --packet 0 -j DNAT --to-destination 192.189.7.138:80
+iptables -A PREROUTING -t nat -p tcp --dport 80 -d 192.189.7.138 -j DNAT --to-destination 192.189.7.139:80
+iptables -A PREROUTING -t nat -p tcp --dport 443 -d 192.189.7.139 -m statistic --mode nth --every 2 --packet 0 -j DNAT --to-destination 192.189.7.139:443
+iptables -A PREROUTING -t nat -p tcp --dport 443 -d 192.189.7.139 -j DNAT --to-destination 192.189.7.138:443
+```
+### Bukti Berhasil
+<img width="960" alt="no5" src="https://user-images.githubusercontent.com/94627623/206899368-f4070d3d-b7b7-4c2d-a15e-84214b7af3fe.png">
+
+
+## Nomor 6
+### Soal
+Karena Loid ingin tau paket apa saja yang di-drop, maka di setiap node server dan router ditambahkan logging paket yang di-drop dengan standard syslog level.
+### Jawaban
+Restart terlebih dahulu DHCP pada `WISE`
+```
+service isc-dhcp-server restart
+service isc-dhcp-server restart
+```
+Lalu isikan syntax `sylog` pada `WISE` untuk melihat paket yang di drop
+```
+iptables -N LOGGING
+iptables -A INPUT -p icmp -m connlimit --connlimit-above 2 --connlimit-mask 0 -j LOGGING
+iptables -A LOGGING -j LOG --log-prefix "IPTables-Dropped: "
+iptables -A LOGGING -j DROP
+```
+Kemudian isikan `sylog` pada semua node
+```
+iptables -A INPUT -m time --timestart 07:00 --timestop 16:00 --weekdays Mon,Tue,Wed,Thu,Fri -j ACCEPT
+
+iptables -N LOGGING
+iptables -A INPUT -j LOGGING
+iptables -A LOGGING -j LOG --log-prefix "IPTables-Rejected: "
+iptables -A LOGGING -j REJECT
+```
+### Bukti Berhasil
+<img width="960" alt="no6_2" src="https://user-images.githubusercontent.com/94627623/206899516-3eea8cb2-9247-4438-a326-9c978aa7dfd4.png">
+<img width="960" alt="no6_3" src="https://user-images.githubusercontent.com/94627623/206899560-6aedf60f-d4c5-4992-b103-811319fd9bc4.png">
