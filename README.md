@@ -377,3 +377,36 @@ iptables -A FORWARD -p udp -d 192.189.7.131 -i eth0 -j DROP # Drop semua UDP
 Jika berhasil, maka instalasi pada node Wise tidak dapat berjalan karena transaksi TCP dan UDP diblokir (dihapus)
 ![BuktiBerhasilSoal2](https://github.com/MonicaDavita/Jarkom-Modul-5-D09-2022/blob/main/aset/Soal%202/no2WiseStuck.jpeg?raw=true)
 * Terlihat bahwa instalasi pada node Wise tidak berhasil setelah no2.sh dibash pada node Strix 
+
+## Nomor 3
+### Soal
+Kalian diminta untuk membatasi DHCP dan DNS Server hanya boleh menerima maksimal 2 koneksi ICMP secara bersamaan menggunakan iptables, selebihnya didrop.
+### Jawaban
+Jalankan script no3.sh pada DHCP Server WISE dan DNS Server Eden.
+```
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A INPUT -p icmp -m connlimit --connlimit-above 2 --connlimit-mask 0 -j DROP
+```
+![no3 sh](https://user-images.githubusercontent.com/96837287/206891867-5c91775c-8f97-45ab-8910-a08115f5ed15.jpg)
+
+### Bukti Berhasil
+Melakukan testing menuju Eden (192.189.7.130) dan menuju Wise (192.189.7.131) dengan melakukan ping pada Blackbell(Client 1), Briar(Client 2), dan Desmond(Client 3)
+
+Blackbell menuju Eden
+![Blackbell 130](https://user-images.githubusercontent.com/96837287/206892017-83f133a1-7dd5-4661-9e94-2da98d1d75e4.jpg)
+
+Briar menuju Eden
+![Briar 130](https://user-images.githubusercontent.com/96837287/206892020-75bc71ae-3006-43ac-bbea-3fa11d613a6f.jpg)
+
+Desmond menuju Eden
+![Desmond 130](https://user-images.githubusercontent.com/96837287/206892021-565cbaf6-7b0d-4030-b666-f2b5ec36f533.jpg)
+
+
+Blackbell menuju Wise
+![Blackbell 131](https://user-images.githubusercontent.com/96837287/206892037-de71a07f-d3f5-4ef4-bc7d-3e5d9f75a49f.jpg)
+
+Briar menuju Wise
+![Briar 130 131](https://user-images.githubusercontent.com/96837287/206892038-f74e8076-8c58-4007-97b5-a220b47300ac.jpg)
+
+Desmond menuju Wise
+![Desmond 131](https://user-images.githubusercontent.com/96837287/206892044-6511eb39-7354-4270-8d5d-35f79e7a191e.jpg)
