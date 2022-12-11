@@ -411,6 +411,26 @@ Briar menuju Wise
 Desmond menuju Wise
 ![Desmond 131](https://user-images.githubusercontent.com/96837287/206892044-6511eb39-7354-4270-8d5d-35f79e7a191e.jpg)
 
+## Nomor 4
+### Soal
+Akses menuju Web Server hanya diperbolehkan disaat jam kerja yaitu Senin sampai Jumat pada pukul 07.00 - 16.00.
+### Jawaban
+Menjalankan script no4.sh pada Garden dan SSS untuk mengatur waktu Reject, dengan command
+```
+iptables -A INPUT -m time --timestart 07:00 --timestop 16:00 --weekdays Mon,Tue,Wed,Thu,Fri -j ACCEPT
+iptables -A INPUT -j REJECT
+```
+### Bukti Berhasil
+Testing dengan ping IP Web Server Garden (192.189.7.138) dan SSS (192.189.7.139) pada Client. Berhubung hari ini merupakan hari Minggu, 11 Dec 2022 yang mana bukan merupakan weekdays maka bukti yang dapat kami lampirkan merupakan testing ping sebelum dan sesudah menjalankan script no4.sh
+
+Briar menuju Garden (Sebelum di bash)
+![Briar 138 reach](https://user-images.githubusercontent.com/96837287/206899456-49db6870-0ccf-4546-8efc-59729f5450ed.jpg)
+
+Briar menuju SSS (Sebelum di bash)
+![Briar 139 reach](https://user-images.githubusercontent.com/96837287/206899458-a40a15ab-d0a3-460c-91c0-cb315cfccf91.jpg)
+
+Setelah di bash no4.sh
+![Briar 139 Unreachable](https://user-images.githubusercontent.com/96837287/206899460-c6ea537c-361e-4704-9d7c-74fa8abe5021.jpg)
 
 ## Nomor 5
 ### Soal
