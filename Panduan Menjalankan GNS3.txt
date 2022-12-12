@@ -12,6 +12,6 @@
 3.2.1 service isc-dhcp-relay restart
 3.3 bash DHCPRelayStrix.sh di node Strix
 3.3.1 service isc-dhcp-relay restart
-3.4 service isc-dhcp-server pada Wise
+3.4 service isc-dhcp-server restart pada Wise
 
 4. Restart semua client lalu buka semua client, setelah instalasi selesai maka tes dengan ping google.com -c 5
